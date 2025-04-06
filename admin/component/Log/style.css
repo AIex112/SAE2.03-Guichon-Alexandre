@@ -44,3 +44,11 @@
     opacity: 1;
   }
 }
+
+.log__div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+  background-color: rgb(32, 32, 32);
+}
