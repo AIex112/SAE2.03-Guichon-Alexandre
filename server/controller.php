@@ -31,3 +31,14 @@ function updateController(){
       return "Erreur lors de l'ajout du film $name";
     }
   }
+
+function readMovieDetailController(){
+    if (!isset($_REQUEST['id'])){
+        echo json_encode('[error] Missing id parameter');
+        http_response_code(400); // 400 == "Bad request"
+        exit();
+    }
+    $id = $_REQUEST['id'];
+    $movie = getMovieDetail($id);
+    return $movie;
+}

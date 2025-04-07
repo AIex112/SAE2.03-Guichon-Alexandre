@@ -51,3 +51,16 @@ function updateMovie($n, $y, $l, $de, $di, $id, $im, $t, $m){
     $res = $stmt->rowCount(); 
     return $res; // Retourne le nombre de lignes affectées
 }
+
+function getMovieDetail($id){
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD); 
+    $sql = "SELECT Movie.*, Category.name AS category_name
+            FROM Movie
+            INNER JOIN Category ON Movie.id_category = Category.id
+            WHERE Movie.id = :id";
+    $stmt = $cnx->query($sql);
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $res = $stmt->fetchAll(PDO::FETCH_OBJ); 
+    return $res; 
+}
