@@ -30,3 +30,10 @@
   height: 40rem;
   overflow: hidden;
 }
+
+.MovieDetail__trailer {
+  padding-top: 2rem;
+  width: 35rem;
+  height: 20rem;
+  overflow: hidden;
+}
