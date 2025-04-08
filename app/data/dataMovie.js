@@ -8,8 +8,8 @@ DataMovie.requestMovies = async function(){
     return data;
 }
 
-DataMovie.resquestMovieDetails = async function(id){
-    let answer = await fetch(HOST_URL + "/server/script.php?todo=readmovie&id=" + id);
+DataMovie.requestMovieDetails = async function(id){
+    let answer = await fetch(HOST_URL + "/server/script.php?todo=readMovieDetail&id=" + id);
     let data = await answer.json();
     return data;
 }

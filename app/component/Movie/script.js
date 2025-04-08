@@ -9,7 +9,7 @@ Movie.format = function (movies) {
   let moviehtml = template;
   moviehtml = moviehtml.replace("{{nom}}", movie.name);
   moviehtml = moviehtml.replace("{{affiche}}", movie.image);
-  moviehtml = moviehtml.replace("{{onclick}}",'C.handlerDetail(${movie.id})');
+  moviehtml = moviehtml.replace("{{onclick}}", `C.handlerDetail(${movie.id})`);
   html += moviehtml;
   });
   return html;

@@ -8,11 +8,11 @@ MovieDetail.format = function (movie) {
   html = html.replace("{{affiche}}", movie.image);
   html = html.replace("{{nom}}", movie.name);
   html = html.replace("{{description}}", movie.description);
-  html = html.replace("{{reallisateur}}", movie.realisateur);
-  html = html.replace("{{annee}}", movie.annee);
-  html = html.replace("{{duree}}", movie.duration);
-  html = html.replace("{{categorie}}", movie.categorie);
-  html = html.replace("{{restriction}}", movie.restriction);
+  html = html.replace("{{realisateur}}", movie.director);
+  html = html.replace("{{annee}}", movie.year);
+  html = html.replace("{{duree}}", movie.length);
+  html = html.replace("{{categorie}}", movie.id_category);
+  html = html.replace("{{restriction}}", movie.min_age);
   html = html.replace("{{trailer}}", movie.trailer);
   return html;
 }

@@ -11,10 +11,11 @@
     <header id="header"></header>
 
     <section class="cards" id="content"></section>
+    <section class="detail" id="detail"></section>
 
     <script type="module">
       import { NavBar } from "./component/NavBar/script.js";
-      
+
       import { Movie } from "./component/Movie/script.js";
       import { DataMovie } from "./data/dataMovie.js";
       import { MovieDetail } from "./component/MovieDetail/script.js";
@@ -30,17 +31,17 @@
       };
 
       C.getMovie = async function () {
-        let infosSection = document.querySelector("#content");
-        infosSection.innerHTML ="";
-          let data = await DataMovie.requestMovies();
-          V.renderMovie(data);
+        let infosSection = document.querySelector("#detail");
+        infosSection.innerHTML = "";
+        let data = await DataMovie.requestMovies();
+        V.renderMovie(data);
       };
 
       C.handlerDetail = async function (id) {
         let data = await DataMovie.requestMovieDetails(id);
-        V.renderMovieDetail(data.movie);
-      }
-      
+        V.renderMovieDetail(data);
+      };
+
       C.handlerMovies = function () {
         C.getMovie();
       };

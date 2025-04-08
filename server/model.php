@@ -58,9 +58,9 @@ function getMovieDetail($id){
             FROM Movie
             INNER JOIN Category ON Movie.id_category = Category.id
             WHERE Movie.id = :id";
-    $stmt = $cnx->query($sql);
-    $stmt->bindParam(':id', $id);
+    $stmt = $cnx->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
-    $res = $stmt->fetchAll(PDO::FETCH_OBJ); 
+    $res = $stmt->fetch(PDO::FETCH_OBJ); 
     return $res; 
 }

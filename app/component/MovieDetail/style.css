@@ -1,0 +1,32 @@
+.MovieDetail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgb(32, 32, 32);
+  color: var(--color-fg);
+  font-family: var(--ff-sans);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  max-width: 75rem;
+  border-radius: 0.5rem;
+}
+
+.MovieDetail__nom {
+  color: white;
+}
+
+.MovieDetail__description {
+  color: white;
+}
+
+.MovieDetail * {
+  color: white;
+}
+
+.MovieDetail__affiche {
+  width: 30rem;
+  height: 40rem;
+  overflow: hidden;
+}
