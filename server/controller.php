@@ -47,3 +47,30 @@ function readMovieCategoryController(){
     $categories = getMovieCategory();
     return $categories;
 }
+
+function profileController() {
+  if (!isset($_REQUEST['name']) || !isset($_REQUEST['image']) || !isset($_REQUEST['age'])) {
+    echo json_encode(["success" => false, "message" => "parametres manquants"]);
+    http_response_code(400);
+    exit();
+  }
+
+  $name = $_REQUEST['name'];
+  $image = $_REQUEST['image'];
+  $age = $_REQUEST['age'];
+
+  if ($age <= 0) {
+    echo json_encode(["success" => false, "message" => "L'âge doit être supérieur à 0"]);
+    exit();
+  }
+
+  $ok = addProfile($name, $image, $age);
+  
+  if ($ok) {
+    echo json_encode(["success" => true, "message" => "Profil ajouté avec succès"]);
+  } else {
+    echo json_encode(["success" => false, "message" => "Erreur lors de l'ajout du profil"]);
+  }
+  
+  exit();
+}
