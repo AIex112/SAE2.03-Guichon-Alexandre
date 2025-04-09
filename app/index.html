@@ -34,8 +34,8 @@
       C.getMovie = async function () {
         let infosSection = document.querySelector("#detail");
         infosSection.innerHTML = "";
-        let data = await DataMovie.requestMovies();
-        V.renderMovie(data);
+        let data = await DataMovie.requestMoviesCategory();
+        V.renderMovieCategory(data);
       };
 
       C.handlerDetail = async function (id) {
@@ -70,6 +70,14 @@
       V.renderMovieDetail = function (data) {
         let content = document.querySelector("#content");
         content.innerHTML = MovieDetail.format(data);
+      };
+
+      V.renderMovieCategory = function (data) {
+        let content = document.querySelector("#content");
+        content.innerHTML = "";
+        for (let item of data) {
+          content.innerHTML += MovieCategory.format(item);
+        }
       };
 
       C.start(); // Démarre l'application

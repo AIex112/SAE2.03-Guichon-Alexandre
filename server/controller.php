@@ -42,3 +42,8 @@ function readMovieDetailController(){
     $movie = getMovieDetail($id);
     return $movie;
 }
+
+function readMovieCategoryController(){
+    $categories = getMovieCategory();
+    return $categories;
+}

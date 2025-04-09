@@ -9,8 +9,10 @@ MovieCategory.format = function (category) {
   let html = template;
   html = html.replace("{{nom}}", category.name);
 
-  let movieHtml = Movie.format(category.movies || []);
+  let movieHtml = Movie.format(category.movie || []);
   html = html.replace("{{movies}}", movieHtml);
+
+  return html;
 };
 
 export { MovieCategory };
