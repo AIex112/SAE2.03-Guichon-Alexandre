@@ -1,5 +1,16 @@
+.categorie {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0.625rem 0;
+}
+
 .movieCategory {
-    
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    width: 100%;
 }
 
 .movieCategory__movie {
@@ -7,3 +18,4 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
