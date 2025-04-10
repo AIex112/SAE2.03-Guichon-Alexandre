@@ -48,29 +48,20 @@ function readMovieCategoryController(){
     return $categories;
 }
 
-function profileController() {
-  if (!isset($_REQUEST['name']) || !isset($_REQUEST['image']) || !isset($_REQUEST['age'])) {
-    echo json_encode(["success" => false, "message" => "parametres manquants"]);
-    http_response_code(400);
-    exit();
-  }
+function addProfileController(){
 
-  $name = $_REQUEST['name'];
-  $image = $_REQUEST['image'];
-  $age = $_REQUEST['age'];
-
-  if ($age <= 0) {
-    echo json_encode(["success" => false, "message" => "L'âge doit être supérieur à 0"]);
-    exit();
-  }
-
-  $ok = addProfile($name, $image, $age);
+  $name = $_REQUEST['name'] ?? null;
+  $image = $_REQUEST['image'] ?? null;
+  $age = $_REQUEST['age'] ?? null;
   
-  if ($ok) {
-    echo json_encode(["success" => true, "message" => "Profil ajouté avec succès"]);
-  } else {
-    echo json_encode(["success" => false, "message" => "Erreur lors de l'ajout du profil"]);
+  if (empty($name) || empty($image) || empty($age)) {
+    return "Erreur : Tous les champs doivent être remplis.";
   }
-  
-  exit();
-}
+  $ok = addProfile($name, $image,$age);
+  if ($ok!=0){
+    return "L'utilisateur a été ajouté avec succès !";
+  } 
+  else{
+    return "Erreur lors de l'ajout de l'utilisateur  !";
+  }
+      }
