@@ -19,6 +19,7 @@
       import { DataProfile } from "./data/dataProfile.js";
 
       window.C = {};
+      window.V = {};
 
       C.handlerUpdate = async function () {
         let form = document.querySelector(".addMovie__form");
@@ -34,33 +35,34 @@
       C.handlerAddProfile = async function () {
         let form = document.querySelector(".addProfile__form");
         if (!(form instanceof HTMLFormElement)) {
-          V.renderLog(
-            "Erreur : le formulaire profil est introuvable ou mal formé."
-          );
+          V.renderLog("Erreur : formulaire introuvable ou mal formé.");
           return;
         }
 
         let fd = new FormData(form);
-        let inputs = form.querySelectorAll("input");
-        let isEmpty = Array.from(inputs).some((input) => !input.value.trim());
+        let isEmpty = false;
+        form.querySelectorAll("input").forEach((input) => {
+          if (!input.value.trim()) {
+            isEmpty = true;
+          }
+        });
+
         if (isEmpty) {
-          V.renderLog("Remplissez tous les champs du formulaire.");
+          V.renderLog("Veuillez remplir tous les champs");
           return;
         }
 
-        let res = await DataProfile.addProfile(fd); // Changer ici
+        let res = await DataProfile.addProfile(fd);
         if (res.success) {
-          V.renderLog("Profile ajouté avec succès.");
+          V.renderLog("Le Profile a été ajouté avec succès");
         } else {
-          V.renderLog("Erreur lors de l'ajout du profile.");
+          V.renderLog("Erreur lors de l'ajout du Profile");
         }
       };
 
-      window.V = {};
-
-      V.renderLog = function (txt) {
+      V.renderLog = async function (txt) {
         let content = document.querySelector("#log");
-        content.innerHTML = Log.format(txt);
+        content.innerHTML = await Log.format(txt);
       };
 
       V.renderNewMovieForm = function (handler) {
@@ -78,27 +80,18 @@
         }
       };
 
-      V.renderProfileForm = function (handler) {
+      V.renderProfileForm = async function (handler) {
         let content = document.querySelector("#formulaire-profile");
-        content.innerHTML = ProfileForm.format(handler);
-
-        let form = content.querySelector(".addProfile__form");
-        if (form) {
-          form.addEventListener("submit", function (e) {
-            e.preventDefault();
-            handler();
-          });
-        } else {
-          V.renderLog("Erreur : le formulaire profil n'a pas été trouvé");
-        }
+        content.innerHTML = await ProfileForm.format(handler);
       };
 
-      C.start = function () {
-        V.renderLog("Démarrage de l'application");
+      C.start = async function () {
+        await V.renderLog("Démarrage de l'application");
         V.renderNewMovieForm(C.handlerUpdate);
-        V.renderProfileForm(C.handlerAddProfile);
+        await V.renderProfileForm(C.handlerAddProfile);
       };
 
+      // Lancer l'appli
       C.start();
     </script>
   </body>

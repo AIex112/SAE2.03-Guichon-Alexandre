@@ -3,10 +3,11 @@ let template = await templateFile.text();
 
 let ProfileForm = {};
 
-ProfileForm.format = function (handler) {
-    let html = template;
-    html = html.replace('{{handler}}', handler);
+ProfileForm.format = async function (handler) {
+    let templateFile = await fetch('./component/Profile/template.html');
+    let template = await templateFile.text();
+    let html = template.replace('{{handler}}', handler);
     return html;
-}
+};
 
 export { ProfileForm };

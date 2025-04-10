@@ -109,7 +109,7 @@ function getMovieCategory(){
 
 function addProfile ($name, $image, $age) {
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
-    $sql = "INSERT INTO Profile (name, image, age) VALUES (:name, :image, :age)";
+    $sql = "INSERT INTO User (name, image, age) VALUES (:name, :image, :age)";
     $stmt = $cnx->prepare($sql);
     $stmt->bindParam(':name', $name);
     $stmt->bindParam(':image', $image);
