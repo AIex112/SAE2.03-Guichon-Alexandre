@@ -118,3 +118,12 @@ function addProfile($name, $image, $age) {
   
     return ["success" => true];
   }
+
+  function readProfil(){
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    $sql = "select id, name, image from User";
+    $stmt = $cnx->prepare($sql);
+    $stmt->execute();
+    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $res; 
+}

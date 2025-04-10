@@ -65,3 +65,8 @@ function addProfileController(){
     return "Erreur lors de l'ajout de l'utilisateur  !";
   }
       }
+
+function readProfileController(){
+    $profiles = readProfil();
+    return $profiles;
+}
