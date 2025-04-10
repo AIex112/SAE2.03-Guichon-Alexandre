@@ -1,5 +1,3 @@
-
-
 let HOST_URL = "https://mmi.unilim.fr/~guichon3/SAE2.03-Guichon-Alexandre";
 
 let DataProfile = {};
@@ -14,3 +12,4 @@ DataProfile.add = async function (formData) {
 };
 
 export { DataProfile };
+
