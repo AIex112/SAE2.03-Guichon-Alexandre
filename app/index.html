@@ -29,7 +29,7 @@
 
       C.start = async function () {
         let profils = await DataProfil.readProfil();
-        V.renderNavBar("C.handlerMovies()","C.handlerProfil()" , profils);
+        V.renderNavBar("C.handlerMovies()", "C.handlerProfil()", profils);
         C.getMovie();
       };
 
@@ -50,8 +50,25 @@
       };
 
       C.handlerProfil = async function () {
-        let profils = await DataProfil.readProfil();
-        V.renderNavBar("C.handlerMovies()","C.handlerProfil()" , profils);
+        const select = document.querySelector("#profil-select");
+        const selectedOption = select.selectedOptions[0];
+        const profileName = selectedOption.value;
+        const dob = selectedOption.getAttribute("data-dob");
+        const imageFilename =
+          selectedOption.getAttribute("data-img") || "default.jpg"; // Image par défaut
+        const picture = document.querySelector("#profil-image");
+        const base =
+          "https://mmi.unilim.fr/~guichon3/SAE2.03-Guichon-Alexandre/server/images/";
+
+        // Met à jour l'image de profil
+        picture.src = base + imageFilename;
+
+        // Récupère les films pour le profil sélectionné
+        let data = await DataMovie.requestMoviesCategory();
+        console.log("Films pour le profil sélectionné :", data);
+
+        // Affiche les films
+        V.renderMovieCategory(data);
       };
 
       // Vue (contient tout ce qui est relatif à l'affichage)

@@ -11,10 +11,10 @@ NavBar.format = function (handlerMovies, handlerProfil, profils) {
   let profil = "";
   for (let i = 0; i < profils.length; i++) {
     let p = profils[i];
-    profil += `<option value="${p.name}" data-img="${p.photo}" data-dob="${p.age}">${p.name}</option>`;
+    profil += `<option value="${p.name}" data-img="${p.image}" data-dob="${p.age}">${p.name}</option>`;
   }
 
-  let photo = profils[0]?.image || "";
+  let photo = profils[0]?.image || "default.jpg";
   html = html.replace("{{profil}}", profil);
   html = html.replace("{{photo}}", photo);
   return html;
