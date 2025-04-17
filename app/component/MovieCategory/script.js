@@ -15,4 +15,5 @@ MovieCategory.format = function (category) {
   return html;
 };
 
+
 export { MovieCategory };
