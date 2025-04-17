@@ -1,0 +1,29 @@
+.addMovie {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(32, 32, 32);
+}
+
+.addMovie__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem;
+    margin-top: 0.5rem;
+    padding: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    background-color: #333333;
+}
+
+.addMovie__form--year {
+    width: 100%;
+}
+
+.addMovie__title {
+    color: #00DB00;
+    font-size: 1.5rem;
+    font-family: 'Courier New', Courier, monospace;
+}

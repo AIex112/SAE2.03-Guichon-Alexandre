@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>SAE2.03 ADMIN</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/base.css" />
+  </head>
+  <body>
+    <section class="log__div" id="log"></section>
+    <section id="formulaire-movie"></section>
+    <section  id="addProfile"></section>
+
+    <script type="module">
+      import { Log } from "./component/Log/script.js";
+      import { NewMovieForm } from "./component/Formulaire/script.js";
+      import { ProfileForm } from "./component/Profile/script.js";
+      import { DataMovie } from "./data/dataMovie.js";
+      import { DataProfile } from "./data/dataProfil.js";
+
+      window.C = {};
+      
+      C.handlerUpdate = async function () {
+        let form = document.querySelector(".addMovie__form");
+        if (!(form instanceof HTMLFormElement)) {
+          V.renderLog("Erreur : formulaire introuvable ou mal formé.");
+          return;
+        }
+        let fd = new FormData(form);
+        let res = await DataMovie.update(fd);
+        V.renderLog(res);
+      };
+
+      C.handlerAddProfile = async function () {
+        let form = document.querySelector(".addProfile-content__form");
+        let fd = new FormData(form);
+        let res = await DataProfile.add(fd);
+        V.renderLog(res);
+      };
+
+C.start = async function () {
+   V.renderLog("Démarrage de l'application");
+  V.renderNewMovieForm(C.handlerUpdate);
+  V.renderAddProfileForm("C.handlerAddProfile()");
+  };
+  window.V = {};
+  
+      V.renderLog = async function (txt) {
+        let content = document.querySelector("#log");
+        content.innerHTML = await Log.format(txt);
+      };
+
+      V.renderNewMovieForm = function (handler) {
+        let content = document.querySelector("#formulaire-movie");
+        content.innerHTML = NewMovieForm.format();
+
+        let form = content.querySelector(".addMovie__form");
+        if (form) {
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            handler();
+          });
+        } else {
+          V.renderLog("Erreur : le formulaire n'a pas été trouvé");
+        }
+      };
+
+      V.renderAddProfileForm = function (handler) {
+        let content = document.querySelector("#addProfile");
+        content.innerHTML = ProfileForm.format(handler);
+      };
+
+      C.start();
+    </script>
+  </body>
+</html>

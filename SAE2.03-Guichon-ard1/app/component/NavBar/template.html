@@ -1,0 +1,38 @@
+<nav class="navbar font-sans">
+  <div class="navbar__list">
+    <div class="navbar__item" onclick="{{handlerMovies}}">
+      <img
+        class="navbar__item-logo"
+        src="https://mmi.unilim.fr/~guichon3/SAE2.03-Guichon-Alexandre/server/images/home.svg"
+        alt="bouton home"
+      />
+      <li class="navbar__item-name">Films</li>
+    </div>
+
+    <div class="navbar__logo">
+      <img
+        class="navbar__img-logo"
+        src="https://mmi.unilim.fr/~guichon3/SAE2.03-Guichon-Alexandre/server/images/Fichier 1.svg"
+        alt="logo de l'application"
+      />
+    </div>
+
+    <div class="navbar__profil">
+      <label class="navbar__label" for="profil-select"></label>
+      <select
+        class="navbar__select"
+        name="profil"
+        id="profil-select"
+        onchange="{{handler}}"
+      >
+        {{profil}}
+      </select>
+      <img
+        id="profil-image"
+        class="navbar__img"
+        src="https://mmi.unilim.fr/~guichon3/SAE2.03-Guichon-Alexandre/server/images/{{photo}}"
+        alt="photo de profil"
+      />
+    </div>
+  </div>
+</nav>

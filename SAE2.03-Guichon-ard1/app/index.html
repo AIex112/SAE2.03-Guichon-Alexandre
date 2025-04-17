@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>SAE2.03 APP</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/base.css" />
+  </head>
+
+  <body>
+    <header class="header" id="header"></header>
+
+    <section class="cards" id="content"></section>
+    <section class="detail" id="detail"></section>
+
+    <script type="module">
+      import { NavBar } from "./component/NavBar/script.js";
+
+      import { Movie } from "./component/Movie/script.js";
+      import { DataMovie } from "./data/dataMovie.js";
+      import { MovieDetail } from "./component/MovieDetail/script.js";
+      import { MovieCategory } from "./component/MovieCategory/script.js";
+      import { DataProfil } from "./data/dataProfil.js";
+
+      // Controleur
+      // Rappel, écrire window.C plutôt que let C est nécessaire pour tester depuis la console du navigateur
+      // Une fois l'application terminée, on pourrait remettre let C.
+      window.C = {};
+
+      C.start = async function () {
+        let profils = await DataProfil.readProfil();
+        V.renderNavBar("C.handlerMovies()", "C.handlerProfil()", profils);
+        C.getMovie();
+      };
+
+      C.getMovie = async function () {
+        let infosSection = document.querySelector("#detail");
+        infosSection.innerHTML = "";
+        let data = await DataMovie.requestMoviesCategory();
+        V.renderMovieCategory(data);
+      };
+
+      C.handlerDetail = async function (id) {
+        let data = await DataMovie.requestMovieDetails(id);
+        V.renderMovieDetail(data);
+      };
+
+      C.handlerMovies = function () {
+        C.getMovie();
+      };
+
+      C.handlerProfil = async function () {
+        const select = document.querySelector("#profil-select");
+        const selectedOption = select.selectedOptions[0];
+        const profileName = selectedOption.value;
+        const dob = selectedOption.getAttribute("data-dob");
+        const imageFilename =
+          selectedOption.getAttribute("data-img") || "default.jpg"; // Image par défaut
+        const picture = document.querySelector("#profil-image");
+        const base =
+          "https://mmi.unilim.fr/~guichon3/SAE2.03-Guichon-Alexandre/server/images/";
+
+        // Met à jour l'image de profil
+        picture.src = base + imageFilename;
+
+        // Récupère les films pour le profil sélectionné
+        let data = await DataMovie.requestMoviesCategory();
+        console.log("Films pour le profil sélectionné :", data);
+
+        // Affiche les films
+        V.renderMovieCategory(data);
+      };
+
+      // Vue (contient tout ce qui est relatif à l'affichage)
+      window.V = {};
+
+      /**
+       * V.renderNavBar
+       *
+       * Cette fonction est responsable de l'affichage de la barre de navigation (NavBar).
+       * Elle sélectionne l'élément HTML avec l'ID "header" et y insère le contenu
+       * formaté par le composant NavBar.
+       */
+      V.renderNavBar = function (handlerMovies, handlerProfil, profils) {
+        let header = document.querySelector("#header");
+        header.innerHTML = NavBar.format(handlerMovies, handlerProfil, profils);
+      };
+
+      V.renderMovie = function (data) {
+        let content = document.querySelector("#content");
+        content.innerHTML = Movie.format(data);
+      };
+
+      V.renderMovieDetail = function (data) {
+        let content = document.querySelector("#content");
+        content.innerHTML = MovieDetail.format(data);
+      };
+
+      V.renderMovieCategory = function (data) {
+        let content = document.querySelector("#content");
+        content.innerHTML = "";
+        for (let item of data) {
+          content.innerHTML += MovieCategory.format(item);
+        }
+      };
+
+      C.start(); // Démarre l'application
+    </script>
+  </body>
+</html>
+<script type="module"></script>
