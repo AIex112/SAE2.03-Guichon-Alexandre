@@ -6,7 +6,7 @@ body {
   flex-direction: column;
   gap: 1rem;
   margin: 0;
-  padding: 1rem;
+  padding: 0;
   font-family: var(--ff-sans);
   color: var(--color-fg);
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);

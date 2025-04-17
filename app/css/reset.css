@@ -29,7 +29,7 @@ ol[role='list'] {
 body {
   min-height: 100vh;
   line-height: 1.5;
-  background-color: black;
+  background-color: #000E29;
 }
 
 /* Set shorter line heights on headings and interactive elements */
@@ -41,6 +41,7 @@ button, input, label {
 /* Balance text wrapping on headings */
 h1, h2,
 h3, h4 {
+  font-family: 'TheAntiqua', sans-serif;
   text-wrap: balance;
 }
 
@@ -60,7 +61,6 @@ picture {
 /* Inherit fonts for inputs and buttons */
 input, button,
 textarea, select {
-  font-family: inherit;
   font-size: inherit;
 }
 

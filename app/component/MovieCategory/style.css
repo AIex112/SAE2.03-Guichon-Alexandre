@@ -11,6 +11,7 @@
     align-items: start;
     flex-direction: column;
     width: 100%;
+    padding: 1rem;
 }
 
 .movieCategory__movie {
