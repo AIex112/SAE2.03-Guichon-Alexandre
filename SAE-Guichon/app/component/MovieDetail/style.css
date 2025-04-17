@@ -1,10 +1,10 @@
 .MovieDetail {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  text-align: left;
   justify-content: center;
-  padding: 20px;
-  background-color: rgb(32, 32, 32);
+  padding: 1.2rem;
+  background-color: #000E29;
   color: var(--color-fg);
   font-family: var(--ff-sans);
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
@@ -21,7 +21,6 @@
 
 .MovieDetail__description {
   color: white;
-  text-align: center;
   max-width: 45rem;
   font-size: 1.2rem;
   line-height: 1.5;
@@ -32,14 +31,81 @@
 }
 
 .MovieDetail__affiche {
-  width: 30rem;
-  height: 40rem;
+  width: 15rem;
+  height: 20rem;
   overflow: hidden;
 }
 
 .MovieDetail__trailer {
-  padding-top: 2rem;
-  width: 35rem;
-  height: 20rem;
+  padding-top: 0.5rem;
+  width: 70rem;
+  height: 40rem;
   overflow: hidden;
+}
+
+.MovieDetail__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10rem;
+}
+
+
+@media (max-width: 768px) {
+  .MovieDetail__container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .MovieDetail__nom {
+    font-size: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .MovieDetail__description {
+    max-width: 100%;
+    font-size: 1rem;
+  }
+
+  .MovieDetail__affiche {
+    width: 10rem;
+    height: 15rem;
+  }
+
+  .MovieDetail__trailer {
+    width: 100%;
+    height: 25rem;
+  }
+
+  .MovieDetail {
+    padding: 1rem;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .MovieDetail__nom {
+    font-size: 1.2rem;
+    padding-bottom: 1rem;
+  }
+
+  .MovieDetail__description {
+    font-size: 0.9rem;
+  }
+
+  .MovieDetail__affiche {
+    width: 8rem;
+    height: 12rem;
+  }
+
+  .MovieDetail__trailer {
+    width: 100%;
+    height: 20rem;
+  }
+
+  .MovieDetail__container {
+    gap: 1rem;
+  }
 }
