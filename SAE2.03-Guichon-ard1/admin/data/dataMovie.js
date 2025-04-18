@@ -1,4 +1,4 @@
-let HOST_URL = "https://mmi.unilim.fr/~guichon3/SAE2.03-Guichon-Alexandre";
+let HOST_URL = "https://mmi.unilim.fr/~guichon3/SAE2.03-Guichon-Alexandre-ard1";
 
 let DataMovie = {};
 
