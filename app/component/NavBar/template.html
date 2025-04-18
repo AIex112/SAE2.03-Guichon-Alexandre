@@ -1,0 +1,22 @@
+<nav class="navbar font-sans">
+  <ul class="navbar__list">
+    <li class="navbar__item" onclick="{{handlerMovies}}">Films</li>
+    <div class="navbar__profil">
+      <label class="navbar__label" for="profil-select"></label>
+      <select
+        class="navbar__select"
+        name="profil"
+        id="profil-select"
+        onchange="{{handler}}"
+      >
+        {{profil}}
+      </select>
+      <img
+        id="profil-image"
+        class="navbar__img"
+        src="https://mmi.unilim.fr/~guichon3/SAE2.03-Guichon-Alexandre/server/images/{{photo}}"
+        alt="photo de profil"
+      />
+    </div>
+  </ul>
+</nav>

@@ -1,0 +1,56 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  color: var(--color-fg);
+  background-color: var(--color-bg);
+
+  .navbar__item {
+    --_offset: 0.2rem;
+    padding: 0.5rem 1rem;
+    text-decoration: underline;
+    text-decoration-thickness: 0.1rem;
+    text-underline-offset: var(--_offset);
+    cursor: pointer;
+    transition: text-underline-offset 0.2s ease-in-out;
+    &:hover {
+      --_offset: 0.5rem;
+    }
+  }
+}
+
+.navbar__list {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.navbar__profil {
+  display: flex;
+  justify-content: space-between;
+  align-self: right;
+  gap: 0.5rem;
+}
+
+.navbar__select {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  border: solid 0.1rem var(--color-fg);
+}
+
+.navbar__img {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: solid 0.2rem var(--color-fg);
+  transition: box-shadow 0.2s ease-in-out;
+}
